@@ -1,0 +1,89 @@
+* Game Boy Emulator Roadmap
+** TODO PHASE 1 — CPU (Sharp LR35902)
+   :PROPERTIES:
+   :ORDERED: t
+   :END:
+   - [ ] Implémenter les registres (A, F, B, C, D, E, H, L, PC, SP)
+   - [ ] Émuler les opcodes de base (LD, ADD, SUB, etc.)
+   - [ ] Ajouter la gestion des flags Z, N, H, C
+   - [ ] Implémenter les instructions CB-prefixed
+   - [ ] Implémenter les interruptions (VBlank, LCD, Timer, Serial, Joypad)
+   - [ ] Émuler la carte mémoire de base (ROM, RAM, IO)
+   - [ ] Faire passer `cpu_instrs.gb` (Blargg test ROM)
+   - [ ] Faire tourner `instr_timing.gb`
+   - [ ] ✅ Condition de passage : tous les tests Blargg CPU passent
+
+** TODO PHASE 2 — Graphismes (PPU)
+   :PROPERTIES:
+   :ORDERED: t
+   :END:
+   - [ ] Implémenter la VRAM (0x8000–0x9FFF)
+   - [ ] Implémenter l’OAM (sprites)
+   - [ ] Implémenter les modes PPU (OAM scan, Drawing, HBlank, VBlank)
+   - [ ] Rendu ligne par ligne (mode 0)
+   - [ ] Affichage du background
+   - [ ] Gestion des sprites (priorités, transparence)
+   - [ ] Synchronisation PPU <-> CPU (456 cycles par ligne)
+   - [ ] Tester `dmg-acid2.gb` et `mooneye-ppu` suite
+   - [ ] ✅ Condition de passage : le rendu est stable sur Tetris
+
+** TODO PHASE 3 — Inputs (Joypad)
+   :PROPERTIES:
+   :ORDERED: t
+   :END:
+   - [ ] Lire les entrées utilisateur (A, B, Start, Select, etc.)
+   - [ ] Implémenter la lecture mémoire à 0xFF00
+   - [ ] Déclencher interruption joypad si changement
+   - [ ] ✅ Condition de passage : Tetris ou Zelda jouable
+
+** TODO PHASE 4 — MBC (Memory Bank Controllers)
+   :PROPERTIES:
+   :ORDERED: t
+   :END:
+   - [ ] MBC0 (ROM simple)
+   - [ ] MBC1 (switch de banques de ROM/RAM)
+   - [ ] MBC3 (avec support de sauvegarde)
+   - [ ] Support de sauvegarde vers `.sav` externe
+   - [ ] ✅ Condition de passage : Pokémon Rouge démarre et sauvegarde
+
+** TODO PHASE 5 — Audio (APU)
+   :PROPERTIES:
+   :ORDERED: t
+   :END:
+   - [ ] Implémenter le canal Square 1
+   - [ ] Implémenter Square 2
+   - [ ] Implémenter Wave Channel
+   - [ ] Implémenter Noise Channel
+   - [ ] Jouer un buffer audio via SDL (ou autre)
+   - [ ] ✅ Condition de passage : Audio simple fonctionnel sur Zelda ou Tetris
+
+** TODO PHASE 6 — Timers, DMA, Compatibilité
+   :PROPERTIES:
+   :ORDERED: t
+   :END:
+   - [ ] Implémenter les timers (DIV, TIMA, TMA, TAC)
+   - [ ] Implémenter les transferts DMA
+   - [ ] Faire passer les tests de Mooneye
+   - [ ] ✅ Condition de passage : jeux à scrolling (Zelda, Mario) stables
+
+** TODO PHASE 7 — UX / Finitions
+   :PROPERTIES:
+   :ORDERED: t
+   :END:
+   - [ ] Chargement de ROM depuis GUI ou CLI
+   - [ ] Configuration des touches
+   - [ ] Rendu avec FPS
+   - [ ] Sauvegarde et chargement d’état
+   - [ ] Reset soft
+   - [ ] Ajout d’un petit debugger ou log CPU/PPU
+   - [ ] ✅ Condition : on peut jouer à plusieurs jeux sans crash
+
+** TODO PHASE 8 — Bonus
+   :PROPERTIES:
+   :ORDERED: t
+   :END:
+   - [ ] Support Game Boy Color (palettes, double vitesse)
+   - [ ] Implémentation BIOS GB
+   - [ ] Prise en charge de GameShark ou cheats
+   - [ ] Support rewind
+   - [ ] Mode multithread audio / CPU
